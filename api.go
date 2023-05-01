@@ -13,12 +13,8 @@ import (
 // Helpers functions to handle errors in one place
 
 type apiFunc func(http.ResponseWriter, *http.Request) error
-type ApiError struct {
-	Error string
-}
-type APIServer struct {
-	listenAddr string
-}
+type ApiError struct{ Error string }
+type APIServer struct{ listenAddr string }
 
 func NewAPIServer(listenAddr string) *APIServer {
 
@@ -29,8 +25,8 @@ func NewAPIServer(listenAddr string) *APIServer {
 }
 
 func WriteJson(w http.ResponseWriter, status int, v any) error {
+	w.Header().Add("Content-Type", "Application/json")
 	w.WriteHeader(status)
-	w.Header().Set("content-type", "Application/json")
 	return json.NewEncoder(w).Encode(v)
 
 }
