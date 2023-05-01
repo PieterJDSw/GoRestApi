@@ -14,13 +14,17 @@ import (
 
 type apiFunc func(http.ResponseWriter, *http.Request) error
 type ApiError struct{ Error string }
-type APIServer struct{ listenAddr string }
+type APIServer struct {
+	listenAddr string
+	store      Storage
+}
 
-func NewAPIServer(listenAddr string) *APIServer {
+func NewAPIServer(listenAddr string, store Storage) *APIServer {
 
 	return &APIServer{
 
 		listenAddr: listenAddr,
+		store:      store,
 	}
 }
 
