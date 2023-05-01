@@ -59,6 +59,7 @@ func (s *APIServer) Run() {
 	http.ListenAndServe(s.listenAddr, router)
 }
 
+// Initial Entry Function for accounts
 func (s *APIServer) handleAccount(w http.ResponseWriter, r *http.Request) error {
 	if r.Method == "GET" {
 		return s.handleGetAccount(w, r)
@@ -76,7 +77,8 @@ func (s *APIServer) handleAccount(w http.ResponseWriter, r *http.Request) error 
 }
 func (s *APIServer) handleGetAccount(w http.ResponseWriter, r *http.Request) error {
 
-	return nil
+	account := NewAccount("Pjd", "Swanepoel")
+	return WriteJson(w, http.StatusOK, account)
 }
 func (s *APIServer) handleCreateAccount(w http.ResponseWriter, r *http.Request) error {
 
