@@ -41,7 +41,7 @@ func main() {
 
 		log.Println("Running on port:  " + port)
 	}
-	// 14:47
+	// 31:25
 
 }
 func initStorage(db *sql.DB) {
